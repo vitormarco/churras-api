@@ -4,7 +4,7 @@ import AppError from '@shared/errors/AppError';
 
 import IHashProvider from '@modules/users/providers/HashProvider/models/IHashProvider';
 import User from '../infra/typeorm/entities/User';
-import IUserRepository from '../repositories/IUserRepository';
+import IUsersRepository from '../repositories/IUsersRepository';
 
 interface IUserRequest {
   name: string;
@@ -16,7 +16,7 @@ interface IUserRequest {
 class CreateUserService {
   constructor(
     @inject('UsersRepository')
-    private usersRepository: IUserRepository,
+    private usersRepository: IUsersRepository,
 
     @inject('HashProvider')
     private hashProvider: IHashProvider,

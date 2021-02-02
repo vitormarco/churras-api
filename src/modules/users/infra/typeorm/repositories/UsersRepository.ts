@@ -1,6 +1,6 @@
 import { getRepository, Not, Repository } from 'typeorm';
 
-import IUsersRepository from '@modules/users/repositories/IUserRepository';
+import IUsersRepository from '@modules/users/repositories/IUsersRepository';
 import ICreateUserDTO from '@modules/users/dtos/ICreateUsersDTO';
 
 import IFindAllUsersDTO from '@modules/users/dtos/IFindAllUsers';

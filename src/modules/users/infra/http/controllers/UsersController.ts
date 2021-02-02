@@ -15,6 +15,7 @@ export default class UsersController {
 
       return response.json(classToClass(user));
     } catch (err) {
+      console.log(err);
       return response.status(err.statusCode).json({ erro: err.message });
     }
   }
