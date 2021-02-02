@@ -7,13 +7,16 @@
     "@typescript-eslint/eslint-plugin": "^4.14.2",
     "@typescript-eslint/parser": "^4.14.2",
     "celebrate": "^13.0.4",
+    "class-transformer": "^0.3.2",
     "cors": "^2.8.5",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.22.1",
     "express": "^4.17.1",
     "express-async-errors": "^3.1.1",
     "pg": "^8.5.1",
-    "typeorm": "^0.2.30"
+    "tsyringe": "^4.4.0",
+    "typeorm": "^0.2.30",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "@types/cors": "^2.8.9",
