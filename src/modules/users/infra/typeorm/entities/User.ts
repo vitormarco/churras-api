@@ -4,9 +4,11 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
+  OneToMany,
 } from 'typeorm';
 
 import { Exclude } from 'class-transformer';
+import AppointmentUser from '@modules/appointments/infra/typeorm/entities/AppointmentsUsers';
 
 @Entity('users')
 class User {
@@ -22,6 +24,9 @@ class User {
   @Column()
   @Exclude()
   password: string;
+
+  @OneToMany(() => AppointmentUser, appointment_user => appointment_user.user)
+  appointment_users: AppointmentUser[];
 
   @CreateDateColumn()
   created_at: Date;
