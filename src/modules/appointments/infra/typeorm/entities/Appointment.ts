@@ -22,6 +22,9 @@ class Appointment {
   @OneToMany(
     () => AppointmentUser,
     appointment_user => appointment_user.appointment,
+    {
+      cascade: true,
+    },
   )
   appointment_users: AppointmentUser[];
 

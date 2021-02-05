@@ -1,4 +1,4 @@
-import { getRepository, Repository, Between } from 'typeorm';
+import { getRepository, Repository, MoreThanOrEqual } from 'typeorm';
 
 import IAppointmentsRepository from '@modules/appointments/repositories/IAppointmentsRepository';
 import ICreateAppointment from '@modules/appointments/dtos/ICreateAppointmentDTO';
@@ -14,11 +14,10 @@ class AppointmentsRepository implements IAppointmentsRepository {
 
   public async findAllAppointment({
     date_start,
-    date_end,
   }: IFindAllAppointmentsDTO): Promise<Appointment[]> {
     const appointments = await this.ormRepository.find({
       where: {
-        date: Between(date_start, date_end),
+        date: MoreThanOrEqual(date_start),
       },
       relations: ['appointment_users'],
     });
