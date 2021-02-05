@@ -22,9 +22,9 @@ appointmentsRouter.post(
 appointmentsRouter.get(
   '/',
   celebrate({
-    [Segments.BODY]: {
-      initial_date: Joi.date(),
-      final_date: Joi.date(),
+    [Segments.QUERY]: {
+      initial_date: Joi.string().isoDate().required(),
+      final_date: Joi.string().isoDate(),
     },
   }),
   appointmentsController.index,

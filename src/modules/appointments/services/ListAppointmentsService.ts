@@ -4,8 +4,8 @@ import Appointment from '../infra/typeorm/entities/Appointment';
 import IAppointmentsRepository from '../repositories/IAppointmentsRepository';
 
 interface IRequest {
-  initial_date: Date;
-  final_date: Date;
+  initial_date?: string;
+  final_date?: string;
 }
 
 @injectable()
