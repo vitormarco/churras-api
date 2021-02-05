@@ -40,4 +40,19 @@ appointmentsRouter.get(
   appointmentUsersController.index,
 );
 
+appointmentsRouter.post(
+  '/:appointment_id/users',
+  celebrate({
+    [Segments.PARAMS]: {
+      appointment_id: Joi.string().uuid().required(),
+    },
+    [Segments.BODY]: {
+      total_price: Joi.number().required(),
+      paid: Joi.number(),
+      user_id: Joi.string().uuid().required(),
+    },
+  }),
+  appointmentUsersController.create,
+);
+
 export default appointmentsRouter;

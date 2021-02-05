@@ -17,7 +17,16 @@ class AppointmentUsersRepository implements IAppointmentUsersRepository {
     total_price,
     paid,
   }: ICreateAppointmentUsersDTO): Promise<AppointmentsUsers> {
-    return {} as AppointmentsUsers;
+    const appointmentUsers = this.ormRepository.create({
+      appointment_id,
+      user_id,
+      total_price,
+      paid,
+    });
+
+    await this.ormRepository.save(appointmentUsers);
+
+    return appointmentUsers;
   }
 
   public async findAllUsersInAppointment(
