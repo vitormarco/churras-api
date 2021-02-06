@@ -57,7 +57,7 @@ appointmentsRouter.post(
   appointmentUsersController.create,
 );
 
-appointmentsRouter.put(
+appointmentsRouter.patch(
   '/:appointments_users_id/paid',
   celebrate({
     [Segments.PARAMS]: {
