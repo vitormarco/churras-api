@@ -8,6 +8,14 @@ interface IRequest {
   final_date?: string;
 }
 
+type IResponse = Array<{
+  appointment: Appointment;
+  info: {
+    total_people: number;
+    total_collected: number;
+  };
+}>;
+
 @injectable()
 class ListAppointmentsService {
   constructor(
@@ -18,13 +26,28 @@ class ListAppointmentsService {
   public async execute({
     initial_date,
     final_date,
-  }: IRequest): Promise<Appointment[]> {
-    const appointment = await this.appointmentsRepository.findAllAppointment({
-      date_start: initial_date,
-      date_end: final_date,
-    });
+  }: IRequest): Promise<IResponse> {
+    const allAppointment = await this.appointmentsRepository.findAllAppointment(
+      {
+        date_start: initial_date,
+        date_end: final_date,
+      },
+    );
 
-    return appointment;
+    const appointmentsWithInfo = allAppointment.map(appointment => ({
+      appointment,
+      info: {
+        total_people: appointment.appointment_users.length,
+        total_collected: appointment.appointment_users.reduce(
+          (accumulator, user) => {
+            return accumulator + Number(user.paid);
+          },
+          0,
+        ),
+      },
+    }));
+
+    return appointmentsWithInfo;
   }
 }
 
