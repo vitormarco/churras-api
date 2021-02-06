@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import { celebrate, Segments, Joi } from 'celebrate';
 
+import ensureAuthenticated from '@modules/users/infra/http/middlewares/ensureAuthenticated';
 import AppointmentsController from '../controller/AppointmentsController';
 import AppointmentUsersController from '../controller/AppointmentUsersController';
 import AppointmentUserPaidController from '../controller/AppointmentUserPaidController';
@@ -9,6 +10,8 @@ const appointmentsRouter = Router();
 const appointmentsController = new AppointmentsController();
 const appointmentUsersController = new AppointmentUsersController();
 const appointmentUserPaid = new AppointmentUserPaidController();
+
+appointmentsRouter.use(ensureAuthenticated);
 
 appointmentsRouter.post(
   '/',
