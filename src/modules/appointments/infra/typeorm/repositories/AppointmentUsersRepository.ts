@@ -39,6 +39,20 @@ class AppointmentUsersRepository implements IAppointmentUsersRepository {
 
     return appointmentUsers;
   }
+
+  public async findById(
+    appointmentUser_id: string,
+  ): Promise<AppointmentsUsers | undefined> {
+    const appointmentUser = this.ormRepository.findOne(appointmentUser_id);
+
+    return appointmentUser;
+  }
+
+  public async save(
+    appointmentUsers: AppointmentsUsers,
+  ): Promise<AppointmentsUsers> {
+    return this.ormRepository.save(appointmentUsers);
+  }
 }
 
 export default AppointmentUsersRepository;

@@ -3,10 +3,12 @@ import { celebrate, Segments, Joi } from 'celebrate';
 
 import AppointmentsController from '../controller/AppointmentsController';
 import AppointmentUsersController from '../controller/AppointmentUsersController';
+import AppointmentUserPaidController from '../controller/AppointmentUserPaidController';
 
 const appointmentsRouter = Router();
 const appointmentsController = new AppointmentsController();
 const appointmentUsersController = new AppointmentUsersController();
+const appointmentUserPaid = new AppointmentUserPaidController();
 
 appointmentsRouter.post(
   '/',
@@ -53,6 +55,19 @@ appointmentsRouter.post(
     },
   }),
   appointmentUsersController.create,
+);
+
+appointmentsRouter.put(
+  '/:appointments_users_id/paid',
+  celebrate({
+    [Segments.PARAMS]: {
+      appointments_users_id: Joi.string().uuid().required(),
+    },
+    [Segments.BODY]: {
+      paid: Joi.number().required(),
+    },
+  }),
+  appointmentUserPaid.update,
 );
 
 export default appointmentsRouter;
