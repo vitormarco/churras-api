@@ -34,7 +34,7 @@ class AppointmentUsersRepository implements IAppointmentUsersRepository {
   ): Promise<AppointmentsUsers[]> {
     const appointmentUsers = this.ormRepository.find({
       where: { appointment_id },
-      relations: ['user'],
+      relations: ['user', 'appointment'],
     });
 
     return appointmentUsers;
