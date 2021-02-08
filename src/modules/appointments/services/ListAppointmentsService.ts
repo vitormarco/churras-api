@@ -21,7 +21,7 @@ class ListAppointmentsService {
   constructor(
     @inject('AppointmentsRepository')
     private appointmentsRepository: IAppointmentsRepository,
-  ) { }
+  ) {}
 
   public async execute({
     initial_date,
@@ -40,7 +40,7 @@ class ListAppointmentsService {
         total_people: appointment.appointment_users.length,
         total_collected: appointment.appointment_users.reduce(
           (accumulator, user) => {
-            return accumulator + Number(user.paid);
+            return accumulator + Number(user.total_price);
           },
           0,
         ),
